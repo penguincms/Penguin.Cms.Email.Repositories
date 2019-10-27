@@ -7,10 +7,8 @@
     <Description>Not Available</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.1" />
-    <PackageReference Include="Penguin.Messaging.Persistence" Version="2.2.4" />
-    <PackageReference Include="Penguin.Persistence.Database" Version="2.0.8" />
-    <PackageReference Include="Penguin.Cms.Email" Version="1.0.0-63707651487" />
-    <PackageReference Include="Penguin.Cms.Repositories" Version="3.0.3-63707652289" />
+    <PackageReference Include="Penguin.Persistence.Database" Version="2.0.8-T9LXGUJ" />
+    <PackageReference Include="Penguin.Cms.Email" Version="1.0.0-T9LXGUJ" />
+    <PackageReference Include="Penguin.Cms.Repositories" Version="3.0.3-T9LXGUJ" />
   </ItemGroup>
 </Project>
