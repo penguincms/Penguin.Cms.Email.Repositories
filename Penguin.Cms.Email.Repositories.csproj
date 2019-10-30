@@ -5,10 +5,12 @@
     <PackageProjectUrl>https://github.com/penguincms/Penguin.Cms.Email.Repositories</PackageProjectUrl>
     <Version>1.0.0</Version>
     <Description>Not Available</Description>
+    <AssemblyName>Penguin.Cms.Email.Repositories</AssemblyName>
+    <RootNamespace>Penguin.Cms.Email.Repositories</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Persistence.Database" Version="2.0.9-T9M1HHH" />
-    <PackageReference Include="Penguin.Cms.Email" Version="1.0.1-T9M1HHH" />
-    <PackageReference Include="Penguin.Cms.Repositories" Version="3.0.4-T9M1HHH" />
+    <PackageReference Include="Penguin.Persistence.Database" Version="2.0.9-T9M2XAX" />
+    <PackageReference Include="Penguin.Cms.Email" Version="1.0.1-T9M2XAX" />
+    <PackageReference Include="Penguin.Cms.Repositories" Version="3.0.4-T9M2XAX" />
   </ItemGroup>
 </Project>
