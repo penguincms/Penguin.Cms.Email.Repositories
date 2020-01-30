@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Penguin.Cms.Email.Repositories</name>
+    </assembly>
+    <members>
+        <member name="T:Penguin.Cms.Email.Repositories.EmailRepository">
+            <summary>
+            An IRepository implementation used to access/persist a queue of email messages
+            </summary>
+        </member>
+        <member name="P:Penguin.Cms.Email.Repositories.EmailRepository.PersistenceConnectionInfo">
+            <summary>
+            The optional Database Connection info used to bypass the persistence context for updating email state
+            </summary>
+        </member>
+        <member name="P:Penguin.Cms.Email.Repositories.EmailRepository.ConfigurationService">
+            <summary>
+            The current Configuration Service instance used by this repository
+            </summary>
+        </member>
+        <member name="M:Penguin.Cms.Email.Repositories.EmailRepository.#ctor(Penguin.Persistence.Abstractions.PersistenceConnectionInfo,Penguin.Configuration.Abstractions.Interfaces.IProvideConfigurations,Penguin.Persistence.Abstractions.Interfaces.IPersistenceContext{Penguin.Cms.Email.EmailMessage},Penguin.Messaging.Core.MessageBus)">
+            <summary>
+            Creates a new instance of this Email repository
+            </summary>
+            <param name="connectionInfo">Optional database connection info representing the database the emails are stored in. If provided, allows the repository to use ADO to update sent state as failsafe</param>
+            <param name="configurationService">A Configuration Service instance used to extract values for the email system</param>
+            <param name="dbContext">The Persistence context used to store EmailMessages</param>
+            <param name="messageBus">An optional message bus used to send email message events</param>
+        </member>
+        <member name="M:Penguin.Cms.Email.Repositories.EmailRepository.AcceptMessage(Penguin.Messaging.Persistence.Messages.Updating{Penguin.Cms.Email.EmailMessage})">
+            <summary>
+            A message handler for handling changes to email messages. Used to set the state to "debug" if the website is in debug mode, per the configuration service
+            </summary>
+            <param name="updateMessage">The message containing the email being updated.</param>
+        </member>
+        <member name="M:Penguin.Cms.Email.Repositories.EmailRepository.GetByState(Penguin.Cms.Email.Abstractions.EmailMessageState)">
+            <summary>
+            Retrieves all email messages with a given state
+            </summary>
+            <param name="target">The state to retrieve</param>
+            <returns>All email messages with a given state</returns>
+        </member>
+        <member name="M:Penguin.Cms.Email.Repositories.EmailRepository.GetScheduledEmails(System.Int32)">
+            <summary>
+            Gets a list of emails for which the send-date has passed, but no attempt has been made to send
+            </summary>
+            <param name="limit">The max number of emails to retrieve, or 0 if all</param>
+            <returns>Emails for which the send-date has passed, but no attempt has been made to send</returns>
+        </member>
+        <member name="M:Penguin.Cms.Email.Repositories.EmailRepository.UpdateState(System.Int32,Penguin.Cms.Email.Abstractions.EmailMessageState)">
+            <summary>
+            Updates the state of the email message and DOES NOT wait for the context to commit if there is an associated database connection string
+            </summary>
+            <param name="messageId">The email message to update</param>
+            <param name="toSet">the state to set it in</param>
+        </member>
+    </members>
+</doc>
