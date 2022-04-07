@@ -10,8 +10,8 @@
     <DocumentationFile>Penguin.Cms.Email.Repositories.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Penguin.Cms.Repositories" Version="5.0.6-TATDFB4" />
-    <PackageReference Include="Penguin.Persistence.Database" Version="5.0.6-TATDFB4" />
-    <PackageReference Include="Penguin.Cms.Email" Version="5.0.6-TATDFB4" />
+    <PackageReference Include="Penguin.Cms.Repositories" Version="5.0.6-TAVV3GD" />
+    <PackageReference Include="Penguin.Persistence.Database" Version="5.0.6-TAVV3GD" />
+    <PackageReference Include="Penguin.Cms.Email" Version="5.0.6-TAVV3GD" />
   </ItemGroup>
 </Project>
