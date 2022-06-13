@@ -7,6 +7,7 @@ using Penguin.Messaging.Core;
 using Penguin.Messaging.Persistence.Messages;
 using Penguin.Persistence.Abstractions;
 using Penguin.Persistence.Abstractions.Interfaces;
+using Penguin.Persistence.Database;
 using Penguin.Persistence.Database.Objects;
 using Penguin.Persistence.Repositories;
 using System;
