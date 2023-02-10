@@ -8,8 +8,6 @@ using Penguin.Messaging.Persistence.Messages;
 using Penguin.Persistence.Abstractions;
 using Penguin.Persistence.Abstractions.Interfaces;
 using Penguin.Persistence.Database;
-using Penguin.Persistence.Database.Objects;
-using Penguin.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -43,7 +41,7 @@ namespace Penguin.Cms.Email.Repositories
         /// <param name="messageBus">An optional message bus used to send email message events</param>
         public EmailRepository(PersistenceConnectionInfo connectionInfo, IProvideConfigurations configurationService, IPersistenceContext<EmailMessage> dbContext, MessageBus messageBus = null) : base(dbContext, messageBus)
         {
-            this.ConfigurationService = configurationService;
+            ConfigurationService = configurationService;
             PersistenceConnectionInfo = connectionInfo;
 
             if (connectionInfo != null)
@@ -60,7 +58,7 @@ namespace Penguin.Cms.Email.Repositories
         {
             Contract.Requires(updateMessage != null);
 
-            if (this.ConfigurationService.IsDebug())
+            if (ConfigurationService.IsDebug())
             {
                 updateMessage.Target.State = EmailMessageState.Debug;
             }
@@ -71,7 +69,10 @@ namespace Penguin.Cms.Email.Repositories
         /// </summary>
         /// <param name="target">The state to retrieve</param>
         /// <returns>All email messages with a given state</returns>
-        public IEnumerable<EmailMessage> GetByState(EmailMessageState target) => this.Where(e => e.State == target);
+        public IEnumerable<EmailMessage> GetByState(EmailMessageState target)
+        {
+            return this.Where(e => e.State == target);
+        }
 
         /// <summary>
         /// Gets a list of emails for which the send-date has passed, but no attempt has been made to send
@@ -99,11 +100,11 @@ namespace Penguin.Cms.Email.Repositories
         {
             if (DatabaseInstance is null)
             {
-                this.Context.Where(e => e._Id == messageId).Single().State = toSet;
+                Context.Where(e => e._Id == messageId).Single().State = toSet;
             }
             else
             {
-                DatabaseInstance.Execute($"update emailmessages set state = {(int)toSet} where {nameof(Entity._Id)} = {messageId}");
+                _ = DatabaseInstance.Execute($"update emailmessages set state = {(int)toSet} where {nameof(Entity._Id)} = {messageId}");
             }
         }
     }
